@@ -41,8 +41,8 @@ import java.util.Map;
 @Service
 public class KGGraphServiceImpl implements KGGraphService {
 
-    @Value("${file.serverurl}")
-    private String backendUrl;
+    @Value("${file.download-url}")
+    private String downloadUrl;
 
     @Autowired
     private KGGraphRepository kgRepository;
@@ -192,7 +192,8 @@ public class KGGraphServiceImpl implements KGGraphService {
         }
 //        String serverUrl=request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
 //        String csvUrl = backendUrl + request.getContextPath() + filename;
-        String csvUrl = "http://192.168.200.60:20000/minio-api/pmy/excel/neo4j-dataset-1.csv";
+        String csvUrl = downloadUrl + "/file/download/" + filename;
+//        String csvUrl = "http://192.168.200.60:20000/minio-api/pmy/excel/neo4j-dataset-1.csv";
         batchInsertByCSV(label, csvUrl, isCreateIndex);
     }
     private List<Map<String, Object>> getFormatData(MultipartFile file) throws Exception {

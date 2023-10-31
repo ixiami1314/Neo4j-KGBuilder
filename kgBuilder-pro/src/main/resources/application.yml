@@ -1,9 +1,41 @@
+server:
+  port: 8080
+
 spring:
   application:
-    name: kg-builder
-  profiles:
-    active: dev
+    name: pmy-kg
+  servlet:
+    multipart:
+      max-file-size: 100000000
+      maxRequestSize: 200000000
+  thymeleaf:
+    cache : false
+    mode: HTML5
+  neo4j:
+    #      url: bolt://192.168.200.60:7687  #3.x
+    url: ${KG_NEO4J_URL:neo4j://192.168.200.60:7687} #4.x
+    username: ${KG_NEO4J_USERNAME:neo4j}
+    password: ${KG_NEO4J_PASSWORD:ILoveBaiyuetong@12}
+  datasource:
+    url: ${KG_DATABASE_URL:jdbc:mysql://192.168.200.60:13307/kg?useSSL=false&serverTimezone=UTC}
+    driverClassName: com.mysql.cj.jdbc.Driver
+    username: ${KG_DATABASE_USERNAME:pmy_baiyuetong}
+    password: ${KG_DATABASE_PASSWORD:fd3a41ab-3161-9500-1b6f-a3f4551cc830}
+    type: com.zaxxer.hikari.HikariDataSource
 
+mybatis:
+  typeAliasesPackage: com.warmer.kgmaker.entity
+  mapperLocations: classpath*:/mapping/*.xml
+#配置分页插件pagehelper
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
 
-
+img:  #//如果是Windows情况下，格式是 D:\\blog\\image\\   linx 格式"/home/blog/image/";
+  location : ${KG_LOCAL_PATH:/Users/weijun/data/csv}
+file:
+  download-url:  ${KG_DOWNLOAD_URL:http://192.168.3.81:8080/}
+  location : ${KG_LOCAL_PATH:/Users/weijun/data/csv}   #如果是Windows情况下，格式是 D:\\kgmanager\\csv\\   linx 格式"/home/kgmanager/csv/";
 

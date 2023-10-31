@@ -32,6 +32,11 @@
         <hutool.version>5.8.18</hutool.version>
         <commons-fileupload.version>1.4</commons-fileupload.version>
         <fasterxml.jackson.version>2.15.0</fasterxml.jackson.version>
+        <!-- ====================================== -->
+        <!-- 配置远程docker服务地址，镜像打包名称前缀     -->
+        <!-- ====================================== -->
+        <remote.docker.prefix>pmy</remote.docker.prefix>
+        <remote.docker.ip>192.168.200.60</remote.docker.ip>
     </properties>
     <dependencies>
 

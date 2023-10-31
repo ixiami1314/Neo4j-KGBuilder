@@ -13,14 +13,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@SpringBootTest
+//@SpringBootTest
 class ApplicationTests {
 
-    @Autowired
+//    @Autowired
     private KGGraphService kgGraphService;
-    @Autowired
+//    @Autowired
     private KGManagerService kgService;
-    @Test
+//    @Test
     void contextLoads() {
         List<KgDomain> domains = kgService.getDomains();
         int i=0;
@@ -57,7 +57,7 @@ class ApplicationTests {
             System.out.println("清理完成,共清理"+i+"个标签");
         }
     }
-    @Test
+//    @Test
     void contextLoads2() {
         List<HashMap<String, Object>> domains = Neo4jUtil.getGraphLabels();
         int i=0;

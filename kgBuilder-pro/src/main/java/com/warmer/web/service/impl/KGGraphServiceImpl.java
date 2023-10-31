@@ -27,6 +27,7 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -39,6 +40,9 @@ import java.util.Map;
 
 @Service
 public class KGGraphServiceImpl implements KGGraphService {
+
+    @Value("${file.serverurl}")
+    private String backendUrl;
 
     @Autowired
     private KGGraphRepository kgRepository;
@@ -186,8 +190,9 @@ public class KGGraphServiceImpl implements KGGraphService {
             lst[2]=item.get("relationship").toString();
             writer.write(lst);
         }
-        String serverUrl=request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
-        String csvUrl = "http://"+serverUrl+ "/file/download/" + filename;
+//        String serverUrl=request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
+//        String csvUrl = backendUrl + request.getContextPath() + filename;
+        String csvUrl = "http://192.168.200.60:20000/minio-api/pmy/excel/neo4j-dataset-1.csv";
         batchInsertByCSV(label, csvUrl, isCreateIndex);
     }
     private List<Map<String, Object>> getFormatData(MultipartFile file) throws Exception {
